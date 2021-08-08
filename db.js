@@ -40,17 +40,23 @@ Band.hasMany(Album);
 
 const syncAndSeed = async() => {
     await db.sync({ force: true }); //dropping tables if they exist
+
     const [dirtyProjectors, caetanoVeloso] = await Promise.all(['Dirty Projectors', 'Caetano Veloso'].map(name => Band.create({name})));
+    
     const [bitteOrca, tropicalia2, liveAtCH, lampLit] = await Promise.all(['Bitte Orca', 'Tropicalia 2', 'Live at Carnegie Hall', 'Lamp Lit Prose'].map((name) => Album.create({name})));
+    
     bitteOrca.imageUrl ='https://upload.wikimedia.org/wikipedia/en/6/69/DirtyProjectors-BitteOrca.jpg';
     tropicalia2.imageUrl='https://upload.wikimedia.org/wikipedia/en/7/72/Caetano_Veloso_e_Gilberto_Gil_%E2%80%93_Tropic%C3%A1lia_2.png';
     liveAtCH.imageUrl='https://upload.wikimedia.org/wikipedia/en/d/d8/David_Byrne_and_Caetano_Veloso_-_Live_at_Carnegie_Hall.jpg';
     lampLit.imageUrl='https://upload.wikimedia.org/wikipedia/en/a/a2/Dirty_Projectors_-_Lamp_Lit_Prose.jpg';
+    
     lampLit.bandId = dirtyProjectors.id;
     bitteOrca.bandId = dirtyProjectors.id;
     liveAtCH.bandId = caetanoVeloso.id;
     tropicalia2.bandId = caetanoVeloso.id;
+    
     await Promise.all([bitteOrca.save(), tropicalia2.save(), liveAtCH.save(), lampLit.save()]);
+    
     const [cannibalresource, temeculasunrise, thebride] = await Promise.all(['Cannibal Resource', 'Temecula Sunrise', 'The Bride'].map((name) => Song.create({name, albumId: bitteOrca.id, bandId: dirtyProjectors.id})));
     const [haiti, cinemanovo, nossagente] = await Promise.all(['Haiti', 'Cinema novo', 'Nossa gente'].map((name) => Song.create({name, albumId: tropicalia2.id, bandId: caetanoVeloso.id})));
     const [desdeque, voceelinda, sampa] = await Promise.all(['Desde Que o Samba e Samba', 'Voce e Linda', 'Sampa'].map((name) => Song.create({name, albumId: liveAtCH.id, bandId: caetanoVeloso.id})));

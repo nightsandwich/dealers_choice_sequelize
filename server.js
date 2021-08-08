@@ -14,6 +14,7 @@ app.get('/bands', async(req, res, next) => {
         <html>
             <head>
                 <title>Bands</title>
+                
             </head>
             <body>
                 <div>
@@ -42,6 +43,7 @@ app.get('/bands/:id', async(req, res, next) => {
         res.send(`
         <html>
             <head>
+                
                 <title>Albums</title>
             </head>
             <body>
@@ -76,6 +78,7 @@ app.get('/albums', async(req, res, next) => {
         <html>
             <head>
                 <title>Albums</title>
+                
             </head>
             <body>
                 <div>
@@ -108,6 +111,7 @@ app.get('/albums/:id', async(req, res, next) => {
         <html>
             <head>
                 <title>Track List</title>
+                
             </head>
             <body>
                 <div>
