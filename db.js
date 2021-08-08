@@ -57,10 +57,10 @@ const syncAndSeed = async() => {
     
     await Promise.all([bitteOrca.save(), tropicalia2.save(), liveAtCH.save(), lampLit.save()]);
     
-    const [cannibalresource, temeculasunrise, thebride] = await Promise.all(['Cannibal Resource', 'Temecula Sunrise', 'The Bride'].map((name) => Song.create({name, albumId: bitteOrca.id, bandId: dirtyProjectors.id})));
-    const [haiti, cinemanovo, nossagente] = await Promise.all(['Haiti', 'Cinema novo', 'Nossa gente'].map((name) => Song.create({name, albumId: tropicalia2.id, bandId: caetanoVeloso.id})));
-    const [desdeque, voceelinda, sampa] = await Promise.all(['Desde Que o Samba e Samba', 'Voce e Linda', 'Sampa'].map((name) => Song.create({name, albumId: liveAtCH.id, bandId: caetanoVeloso.id})));
-    const [rightnow, breakthru, thatsalifestyle] = await Promise.all(['Right Now', 'Break-Thru', 'Thats a Lifestyle'].map((name) => Song.create({name, albumId: lampLit.id, bandId: dirtyProjectors.id})));
+    const [dpbo1, dpbo2, dpbo3, dpbo4, dpbo5, dpbo6, dpbo7, dpbo8, dpbo9] = await Promise.all(['Cannibal Resource', 'Temecula Sunrise', 'The Bride', 'Stillness is the Move', 'Two Doves', 'Useful Chamber', 'No Intention', 'Remade Horizon', 'Fluorescent Half Dome'].map((name) => Song.create({name, albumId: bitteOrca.id, bandId: dirtyProjectors.id})));
+    const [cvt1, cvt2, cvt3, cvt4, cvt5, cvt6, cvt7, cvt8, cvt9, cvt10, cvt11, cvt12] = await Promise.all(['Haiti', 'Cinema novo', 'Nossa gente', 'Rap popcreto', 'Wait Until Tomorrow', 'Tradicao', 'As coisas', 'Aboio', 'Dada', 'Cada Macaco no seu galho (cho chua)', 'Baiao atemporal', 'Desde que o samba e samba'].map((name) => Song.create({name, albumId: tropicalia2.id, bandId: caetanoVeloso.id})));
+    const [cvl1, cvl2, cvl3, cvl4, cvl5, cvl6, cvl7, cvl8, cvl9, cvl10, cvl11, cvl12, cvl13, cvl14, cvl15, cvl16, cvl17, cvl18] = await Promise.all(['Desde Que o Samba e Samba', 'Voce e Linda', 'Sampa', 'O Leaozinho', 'Coracao Vagabundo', 'Manhata', 'The Revolution', 'Everyones in Love With You', 'And She Was', 'She Only Sleeps', 'Life During Wartime', "God's Child", 'Road to Nowhere', 'Dreamworld: Marco de Canaveses', 'Um Canto de Afoxe para o Bloco de lle', "(Nothing But) Flowers", "Terra", "Heaven"].map((name) => Song.create({name, albumId: liveAtCH.id, bandId: caetanoVeloso.id})));
+    const [rightnow, breakthru, thatsalifestyle, ifeelenergy, zombie, bluebird, founditinu, whatisthetime, youretheone, iwannafeelitall] = await Promise.all(['Right Now', 'Break-Thru', "That's a Lifestyle", 'I Feel Energy', 'Zombie Conqueror', 'Blue Bird', 'Found It In U', 'What Is the Time', "You're the One", '(I Wanna) Feel It All'].map((name) => Song.create({name, albumId: lampLit.id, bandId: dirtyProjectors.id})));
 }
 
 
