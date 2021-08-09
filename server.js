@@ -137,7 +137,7 @@ app.get('/albums/:id', async(req, res, next) => {
                     <a href='/albums'>ALL ALBUMS</a>
                 </div>
                 <div>
-                    <h2>${album.name}<br> <a href='/bands/${band.id}'><small>(${band.name})</small></a></h2>
+                    <h1 style='text-align: left'>${album.name}<br></h1> <a href='/bands/${band.id}'>(${band.name})</a>
                     <ol>
                         ${songs.map(song => `
                         <li class='song-names'>
