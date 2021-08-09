@@ -4,8 +4,8 @@
 }   
 html {
    
-    background-image: linear-gradient( rgb(0, 255, 255), yellow);
-    transition: background-color 2s ;
+    background-image: linear-gradient( rgb(28, 167, 167), yellow);
+    
 }
 #bands, .albums {
     display: flex;
@@ -14,11 +14,19 @@ html {
 }
 
 h1 {
-    text-align: center;
+    
     background-color: rgb(255, 0, 200);
-    transition: background-color 1s linear;
+    transition: background-color 2s linear;
     margin: 0;
+    padding: .5em;
     border: 2px solid black;
+}
+.songs {
+    background-color: rgb(255, 0, 200);
+    transition: background-color 2s linear;   
+}
+.songs > a {
+    padding: 1em;
 }
 
 .nav{
@@ -47,7 +55,14 @@ a:hover{
     color: black;
     -webkit-text-stroke: 1px white;
     background-color: yellow;
+    font-style: oblique;
 }
 ol {
     border: 1px solid black;
+}
+li {
+    margin: .5em;
+    font-size: 1rem;
+    font-style: oblique;
+    font-weight: bold;
 }
