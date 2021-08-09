@@ -9,24 +9,30 @@ app.get('/', (req, res) => res.redirect('/bands'));
 
 app.get('/bands', async(req, res, next) => {
     try{
-        const bands = await Band.findAll();
+        const bands = await Band.findAll({order: ['name']});
         res.send(`
         <html>
             <head>
                 <title>Bands</title>
-                
+                <link rel="stylesheet" href="/styles.css" />
             </head>
             <body>
-                <div>
-                    <h2>Bands</h2>
-                    <ul style='list-style: none'>
-                        ${bands.map(band => `
-                        <li>
-                            <a href='/bands/${band.id}'>${band.name}</a>
-                        </li>
-                        `).join('')}
-                    </ul>
+                <div class='nav'>
+                    <a href='/bands'>ALL BANDS</a>
+                    <a href='/albums'>ALL ALBUMS</a>
                 </div>
+                <div>
+                    <h1>Bands</h1>
+                    <div id='bands'>
+                        ${bands.map(band => `
+                        <h3>
+                            <a href='/bands/${band.id}'>${band.name}</a><br>
+                            <a href='/bands/${band.id}'><img src='${band.imageUrl}' width='300' border='3px solid black'></a>
+                        </h3>
+                        `).join('')}
+                    </div>
+                </div>
+                
             </body>
         </html>
     `);
@@ -39,25 +45,30 @@ app.get('/bands', async(req, res, next) => {
 app.get('/bands/:id', async(req, res, next) => {
     try{
         const band = await Band.findByPk(req.params.id);
-        const albums = await Album.findAll( {where: {bandId: band.id} });
+        const albums = await Album.findAll( {where: {bandId: band.id}, order: ['name'] });
         res.send(`
         <html>
             <head>
-                
                 <title>Albums</title>
+                <link rel="stylesheet" href="/styles.css" />
             </head>
             <body>
-                <div>
-                    <h2>Albums by ${band.name}</h2>
-                    <ul style='list-style: none'>
-                        ${albums.map(album => `
-                        <li>
-                            ${album.name} <br>
-                            <a href='/albums/${album.id}'><img src='${album.imageUrl}' width='300' border='3px solid black'></a> 
-                        </li>
-                        `).join('')}
-                    </ul>
+                <div class='nav'>
+                    <a href='/bands'>ALL BANDS</a>
+                    <a href='/albums'>ALL ALBUMS</a>
                 </div>
+                <div>
+                    <h1>Albums by ${band.name}</h1>
+                    ${albums.map(album => `
+                    <div class='albums'>
+                        <h3>
+                            <a href='/albums/${album.id}'>${album.name}</a><br>
+                            <a href='/albums/${album.id}'><img src='${album.imageUrl}' width='300' border='3px solid black'></a> 
+                        </h3>
+                        `).join('')}
+                    </div>
+                </div>
+                
             </body>
         </html>
     `);
@@ -72,27 +83,34 @@ app.get('/albums', async(req, res, next) => {
         const albums = await Album.findAll({
             include: [
                 Band
+            ],
+            order: [
+                'name'
             ]
         });
         res.send(`
         <html>
             <head>
                 <title>Albums</title>
-                
+                <link rel="stylesheet" href="/styles.css" />
             </head>
             <body>
-                <div>
-                    <h2>Albums</h2>
-                    <ul style='list-style: none'>
-                        ${albums.map(album => `
-                        <li>
-                            ${album.name} by ${album.band.name} <br>
-                            <a href='/albums/${album.id}'><img src='${album.imageUrl}' width='300' border='3px solid black'></a>
-                        </li>
-                        `).join('')}
-                    </ul>
+                <div class='nav'>
+                    <a href='/bands'>ALL BANDS</a>
+                    <a href='/albums'>ALL ALBUMS</a>
                 </div>
-                <a href='/bands'>Back to Bands</a>
+                <div>
+                    <h1>Albums</h1>
+                    <div class='albums'>
+                            ${albums.map(album => `
+                            <h3>
+                                <a href='/albums/${album.id}'>${album.name}</a><br><a href='/bands/${album.band.id}'> <small>(${album.band.name})</small></a> <br>
+                                <a href='/albums/${album.id}'><img src='${album.imageUrl}' width='300' border='3px solid black'></a>
+                            </h3>
+                            `).join('')}
+                    </div>
+                </div>
+                
             </body>
         </html>
     `);
@@ -106,24 +124,29 @@ app.get('/albums/:id', async(req, res, next) => {
     try{
         const album = await Album.findByPk(req.params.id);
         const band = await Band.findOne({where: {id: album.bandId}})
-        const songs = await Song.findAll( {where: {albumId: album.id, bandId: band.id} });
+        const songs = await Song.findAll( {where: {albumId: album.id, bandId: band.id}, order: ['number'] });
         res.send(`
         <html>
             <head>
                 <title>Track List</title>
-                
+                <link rel="stylesheet" href="/styles.css" /> 
             </head>
             <body>
+                <div class='nav'>
+                    <a href='/bands'>ALL BANDS</a>
+                    <a href='/albums'>ALL ALBUMS</a>
+                </div>
                 <div>
-                    <h2>${album.name} by ${band.name}</h2>
+                    <h2>${album.name}<br> <a href='/bands/${band.id}'><small>(${band.name})</small></a></h2>
                     <ol>
                         ${songs.map(song => `
-                        <li>
+                        <li class='song-names'>
                             ${song.name} 
                         </li>
                         `).join('')}
                     </ol>
                 </div>
+                
             </body>
         </html>
     `);
