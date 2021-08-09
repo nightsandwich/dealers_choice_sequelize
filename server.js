@@ -26,8 +26,8 @@ app.get('/bands', async(req, res, next) => {
                     <div id='bands'>
                         ${bands.map(band => `
                         <h3>
-                            <a href='/bands/${band.id}'>${band.name}</a><br>
-                            <a href='/bands/${band.id}'><img src='${band.imageUrl}' width='300' border='3px solid black'></a>
+                            <a href='/bands/${band.id}'>${band.name}</a>
+                            <a href='/bands/${band.id}'><img src='${band.imageUrl}' height='300' border='3px solid black'></a>
                         </h3>
                         `).join('')}
                     </div>
@@ -63,7 +63,7 @@ app.get('/bands/:id', async(req, res, next) => {
                     <div class='albums'>
                         <h3>
                             <a href='/albums/${album.id}'>${album.name}</a><br>
-                            <a href='/albums/${album.id}'><img src='${album.imageUrl}' width='300' border='3px solid black'></a> 
+                            <a href='/albums/${album.id}'><img src='${album.imageUrl}' height='300' border='3px solid black'></a> 
                         </h3>
                         `).join('')}
                     </div>

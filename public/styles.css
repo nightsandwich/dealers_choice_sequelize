@@ -45,11 +45,16 @@ a{
     color: black;
     font-weight: bold;
     text-decoration: none;
+    text-align: center;
 }
 
 .albums > h3 {
     text-align: center;
-    
+}
+#bands > h3{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 a:hover{
     color: black;
