@@ -88,6 +88,19 @@ const syncAndSeed = async() => {
     const [song1b, song2b, song3b] = await Promise.all(['Song1', 'Song2', 'etc.'].map((name) => Song.create({name, albumId: summersun.id, bandId: yoLaTengo.id})));
     const [song1c, song2c, song3c] = await Promise.all(['Song1', 'Song2', 'etc.'].map((name) => Song.create({name, albumId: iCanHear.id, bandId: yoLaTengo.id})));
 
+
+    //These don't work for - not sure how to do the following saves with await
+    
+    /*[dpbo1, dpbo2, dpbo3, dpbo4, dpbo5, dpbo6, dpbo7, dpbo8, dpbo9].forEach((track, index) => {
+        track.number = `${index + 1}`;
+        await track.save();
+    });
+
+    await Promise.all([dpbo1, dpbo2, dpbo3, dpbo4, dpbo5, dpbo6, dpbo7, dpbo8, dpbo9].forEach((track, index) => {
+        track.number = `${index + 1}`;
+        track.save();
+    }));*/
+
     [dpbo1, dpbo2, dpbo3, dpbo4, dpbo5, dpbo6, dpbo7, dpbo8, dpbo9].forEach((track, index) => {
         track.number = `${index + 1}`;
         track.save();
