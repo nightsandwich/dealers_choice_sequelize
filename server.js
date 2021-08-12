@@ -159,9 +159,14 @@ app.get('/albums/:id', async(req, res, next) => {
 });
 
 const init = async()=> {
-    await syncAndSeed();
-    const port = process.env.PORT || 3000;
-    app.listen(port, ()=> console.log(`listening on port ${port}`));
+    try {
+        await syncAndSeed();
+        const port = process.env.PORT || 3000;
+        app.listen(port, ()=> console.log(`listening on port ${port}`));
+    }
+    catch(err){
+        console.log(err);
+    }
 };
 
 init();
